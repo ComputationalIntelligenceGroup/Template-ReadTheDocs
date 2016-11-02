@@ -31,7 +31,7 @@
 
 
                     {% if sectionId == currentSection %}
-
+                      <span class = "toctree-expand"></span>
                       <ul>
                         {% for subsectionId, subsection in section.subsections %}
                           <li class="toctree-l2 {{ subsectionId == currentSubsection ? 'current' }}">
@@ -39,6 +39,7 @@
                                href="{{ subsection.absoluteUrl|default(baseUrl ~ '/' ~ subsection.relativeUrl) }}"> {{ subsection.text | raw }} </a>
 
                             {% if subsectionId == currentSubsection %}
+                            <span class = "toctree-expand"></span>
                             <ul>
                               {% for itemId, item in subsection.items %}
                               <li class="toctree-l3 {{ itemId == currentMenu ? 'current' }}">
