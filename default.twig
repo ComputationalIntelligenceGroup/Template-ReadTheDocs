@@ -28,7 +28,8 @@
                       {% if section.absoluteUrl %}
                         <a class="reference internal {{ sectionId == currentSection ? 'current' }}"
                            href="{{ section.absoluteUrl }}">
-                      {% elsif section.relativeUrl %}
+                      {% endif %}
+                      {% if section.relativeUrl %}
                         <a  class="reference internal {{ sectionId == currentSection ? 'current' }}"
                             href="{{ baseUrl ~ '/' ~ section.relativeUrl }}">
                       {% endif %}
@@ -41,7 +42,8 @@
                             {% if subsection.absoluteUrl %}
                               <a class="reference internal {{ subsectionId == currentSubsection ? 'current' }}"
                                  href="{{ subsection.absoluteUrl }}">
-                            {% elsif subsection.relativeUrl %}
+                            {% endif %}
+                            {% if subsection.relativeUrl %}
                               <a  class="reference internal {{ subsectionId == currentSubsection ? 'current' }}"
                                   href="{{ baseUrl ~ '/' ~ subsection.relativeUrl }}">
                             {% endif %}
