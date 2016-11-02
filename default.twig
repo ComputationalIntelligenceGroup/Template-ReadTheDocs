@@ -49,6 +49,7 @@
                             {% endif %}
                             {{ section.text | raw }}
                             {% if subsectionId == currentSubsection %}
+                              <ul>
                               {% for itemId, item in subsection.items %}
                                 <li class="toctree-l3 {{ itemId == currentMenu ? 'current' }}">
                                     <a class="reference internal {{ itemId == currentMenu ? 'current' }}"
@@ -57,12 +58,13 @@
                                     </a>
                                 </li>
                                 {% endfor %}
+                              </ul>
                             {% endif %}
                           </li>
                         {% endfor %}
                       </ul>
-                    {% endif %}
-
+                      {% endif %}
+                    {% endfor %}
                 </ul>
             </div>
             &nbsp;
