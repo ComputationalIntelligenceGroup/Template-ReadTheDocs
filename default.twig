@@ -27,8 +27,7 @@
                   {% for sectionId, section in menu.sections %}
                     <li class="toctree-l1 {{ sectionId == currentSection ? 'current' }}">
                       <a class="reference internal {{ sectionId == currentSection ? 'current' }}"
-                         href="{{ section.absoluteUrl|default(baseUrl ~ '/' ~ section.relativeUrl) }}">
-                         {{ section.text | raw }}
+                         href="{{ section.absoluteUrl|default(baseUrl ~ '/' ~ section.relativeUrl) }}"> {{ section.text | raw }} </a>
 
 
                     {% if sectionId == currentSection %}
@@ -37,15 +36,14 @@
                         {% for subsectionId, subsection in section.subsections %}
                           <li class="toctree-l2 {{ subsectionId == currentSubsection ? 'current' }}">
                             <a class="reference internal {{ itemId == currentMenu ? 'current' }}"
-                               href="{{ subsection.absoluteUrl|default(baseUrl ~ '/' ~ subsection.relativeUrl) }}">
-                               {{ subsection.text | raw }}
+                               href="{{ subsection.absoluteUrl|default(baseUrl ~ '/' ~ subsection.relativeUrl) }}"> {{ subsection.text | raw }} </a>
+
                             {% if subsectionId == currentSubsection %}
                             <ul>
                               {% for itemId, item in subsection.items %}
                               <li class="toctree-l3 {{ itemId == currentMenu ? 'current' }}">
                                 <a class="reference internal {{ itemId == currentMenu ? 'current' }}"
-                                   href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
-                                    {{ item.text|raw }}
+                                   href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}"> {{ item.text|raw }} </a>
                               </li>
                               {% endfor %}
                             </ul>
