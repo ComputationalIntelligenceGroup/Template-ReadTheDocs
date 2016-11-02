@@ -25,29 +25,17 @@
                 <ul>
                   {% for sectionId, section in menu.sections %}
                     <li class="toctree-l1 {{ sectionId == currentSection ? 'current' }}">
-                      {% if section.absoluteUrl %}
-                        <a class="reference internal {{ sectionId == currentSection ? 'current' }}"
-                           href="{{ section.absoluteUrl }}">
-                      {% endif %}
-                      {% if section.relativeUrl %}
-                        <a  class="reference internal {{ sectionId == currentSection ? 'current' }}"
-                            href="{{ baseUrl ~ '/' ~ section.relativeUrl }}">
-                      {% endif %}
+                      <a class="reference internal {{ sectionId == currentSection ? 'current' }}"
+                         href="{{ section.absoluteUrl|default(baseUrl ~ '/' ~ section.relativeUrl) }}">
                       {{ section.text | raw }}
                     </li>
                     {% if sectionId == currentSection %}
                       <ul>
                         {% for subsectionId, subsection in section.subsections %}
                           <li class="toctree-l2 {{ subsectionId == currentSubsection ? 'current' }}">
-                            {% if subsection.absoluteUrl %}
-                              <a class="reference internal {{ subsectionId == currentSubsection ? 'current' }}"
-                                 href="{{ subsection.absoluteUrl }}">
-                            {% endif %}
-                            {% if subsection.relativeUrl %}
-                              <a  class="reference internal {{ subsectionId == currentSubsection ? 'current' }}"
-                                  href="{{ baseUrl ~ '/' ~ subsection.relativeUrl }}">
-                            {% endif %}
-                            {{ section.text | raw }}
+                            <a class="reference internal {{ itemId == currentMenu ? 'current' }}"
+                               href="{{ subsection.absoluteUrl|default(baseUrl ~ '/' ~ subsection.relativeUrl) }}">
+                            {{ subsection.text | raw }}
                             {% if subsectionId == currentSubsection %}
                               <ul>
                               {% for itemId, item in subsection.items %}
