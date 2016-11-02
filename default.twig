@@ -23,14 +23,44 @@
 
             <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <ul>
-                    {% for itemId, item in menu.items %}
-                        <li class="toctree-l1 {{ itemId == currentMenu ? 'current' }}">
-                            <a class="reference internal {{ itemId == currentMenu ? 'current' }}"
-                               href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
-                                {{ item.text|raw }}
-                            </a>
-                        </li>
-                    {% endfor %}
+                  {% for sectionId, section in menu.sections %}
+                    <li class="toctree-l1 {{ sectionId == currentSection ? 'current' }}">
+                      {% if section.absoluteUrl %}
+                        <a class="reference internal {{ sectionId == currentSection ? 'current' }}"
+                           href="{{ section.absoluteUrl }}">
+                      {% elsif section.relativeUrl %}
+                        <a  class="reference internal {{ sectionId == currentSection ? 'current' }}"
+                            href="{{ baseUrl ~ '/' ~ section.relativeUrl }}">
+                      {% endif %}
+                      {{ section.text | raw }}
+                    </li>
+                    {% if sectionId == currentSection %}
+                      <ul>
+                        {% for subsectionId, subsection in section.subsections %}
+                          <li class="toctree-l2 {{ subsectionId == currentSubsection ? 'current' }}">
+                            {% if subsection.absoluteUrl %}
+                              <a class="reference internal {{ subsectionId == currentSubsection ? 'current' }}"
+                                 href="{{ subsection.absoluteUrl }}">
+                            {% elsif subsection.relativeUrl %}
+                              <a  class="reference internal {{ subsectionId == currentSubsection ? 'current' }}"
+                                  href="{{ baseUrl ~ '/' ~ subsection.relativeUrl }}">
+                            {% endif %}
+                            {{ section.text | raw }}
+                            {% if subsectionId == currentSubsection %}
+                              {% for itemId, item in subsection.items %}
+                                <li class="toctree-l3 {{ itemId == currentMenu ? 'current' }}">
+                                    <a class="reference internal {{ itemId == currentMenu ? 'current' }}"
+                                       href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
+                                        {{ item.text|raw }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+
                 </ul>
             </div>
             &nbsp;
