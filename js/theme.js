@@ -11,9 +11,18 @@ $( document ).ready(function() {
     });
     $(document).on('click', "[data-toggle='rst-current-version']", function() {
       $("[data-toggle='rst-versions']").toggleClass("shift-up");
-    });  
+    });
     // Make tables responsive
     $("table.docutils:not(.field-list)").wrap("<div class='wy-table-responsive'></div>");
+    // Center images
+    $("img").parent().addClass("centered_img");
+
+    // Default cpp code
+    // $("code").not(".json").addClass("cpp");
+
+    $("code").not(".json").addClass("cpp").addClass("inline-cpp").each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
 });
 
 window.SphinxRtdTheme = (function (jquery) {
